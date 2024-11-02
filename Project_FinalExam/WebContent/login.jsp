@@ -4,55 +4,56 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/loginStyle.css">
 <title>Login Form</title>
 </head>
 <body>
-	<%
-		/* String error = request.getParameter("error") == null ? "" : request.getParameter("error") + "";
-		*/
-		String error;
-		if (request.getAttribute("error") == null) {
-			error = "";
-		} else {
-			error = String.valueOf(request.getAttribute("error"));
-		}
-		String username;
-		String password;
-		if (request.getAttribute("username") == null) {
-			username = "";
-		} else {
-			username = request.getParameter("username");
-		}
-		if (request.getAttribute("password") == null) {
-			password = "";
-		} else {
-			password = request.getParameter("password");
-		}
-	%>
-	<form class="container mx-auto" action="LoginServlet" method="post">
-		<h1 class="text-center text-primary">Login</h1>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Username</label> <input type="text"
-				class="form-control" name="username" value="<%=username%>"
-				id="exampleInputEmail1" aria-describedby="emailHelp"
-				placeholder="Enter Username">
+<body>
+	<div class="container">
+		<div id="loginForm" class="form-box active">
+			<h2>Login</h2>
+			<form action="LoginServlet" method="post">
+				<div class="form-group">
+					<label for="username">Username</label> <input type="text"
+						id="username" name="username" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label> <input type="password"
+						id="password" name="password" class="form-control" required>
+				</div>
+				<button type="submit" class="btn">Login</button>
+				<p class="switch-text">
+					Don't have an account? <span onclick="toggleForm()">Sign up</span>
+				</p>
+			</form>
 		</div>
-		<div class="form-group">
-			<label>Password</label> <input type="password" class="form-control"
-				name="password" value="<%=password%>" id="exampleInputPassword1"
-				placeholder="Enter Password">
+		<div id="registerForm" class="form-box">
+			<h2>Register</h2>
+			<form action="RegisterServlet" method="post">
+				<div class="form-group">
+					<label for="newUsername">Username</label> <input type="text"
+						id="newUsername" name="newUsername" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="newEmail">Email</label> <input type="email"
+						id="newEmail" name="newEmail" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="newPassword">Password</label> <input type="password"
+						id="newPassword" name="newPassword" class="form-control" required>
+				</div>
+				<button type="submit" class="btn">Sign Up</button>
+				<p class="switch-text">
+					Already have an account? <span onclick="toggleForm()">Log in</span>
+				</p>
+			</form>
 		</div>
-		<div class="form-check">
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1">Check me
-				out</label>
-		</div>
-		<p class="text-danger"><%=error%></p>
-		<button type="submit" class="btn btn-primary">Login</button>
-	</form>
+	</div>
+	<script src="js/loginScript.js"></script>
 </body>
 </html>
