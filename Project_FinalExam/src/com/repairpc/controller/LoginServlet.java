@@ -1,6 +1,7 @@
 package com.repairpc.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.repairpc.model.User;
+import com.repairpc.model.UserManager;
 
 /**
  * Servlet implementation class LoginServlet
@@ -32,19 +37,29 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("username");
 		String passwd = request.getParameter("password");
-		String url;
-		if (userName.equals("admin") && passwd.equals("123456")) {
-//			url= request.getRequestDispatcher("index.jsp").forward(request, response);
-			request.setAttribute("username", userName);
-			url = "/index.jsp";
+		String url = "/login.jsp";
+		String e = "";
+		HttpSession session = request.getSession();
+		UserManager userManager = new UserManager();
+		List<User> users = userManager.getUsers();
+		User user = userManager.findUser(userName);
+		if (user != null) {
+			if (user.getPassword().equals(passwd)) {
+				url = "/index.jsp";
+				session.setAttribute("au", true);
+				session.setAttribute("user", user);
+				session.setAttribute("users", users);
+			}
+
+			else {
+				e = "Sai Username hoặc password! ";
+			}
 		} else {
-//			response.getStatus("Username or password does not exist");
-//			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Username or password does not exist!");
-			request.setAttribute("error", "Username or password does not exist!");
-			request.setAttribute("username",userName);
-			request.setAttribute("password",passwd);
-			url = "/login.jsp";
+			e = "Tài khoản không tồn tại, hoặc phiên làm việc đã hết hạn, vui lòng đăng nhập lại";
 		}
+		request.setAttribute("error", e);
+		request.setAttribute("username", userName);
+		request.setAttribute("password", passwd);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

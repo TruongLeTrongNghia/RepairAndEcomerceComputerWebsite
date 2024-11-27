@@ -1,5 +1,5 @@
 /* Basic Reset */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +10,7 @@ body {
     background-color: #f9f9f9;
 }
 
-/* Navbar */
+Navbar
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -81,14 +81,14 @@ body {
     margin-right: 1rem;
 }
 
-/* Container */
+Container
 .container {
     display: flex;
     max-width: 1200px;
     margin: 2rem auto;
 }
 
-/* Sidebar */
+Sidebar
 .sidebar {
     width: 25%;
     background-color: #f2f2f2;
@@ -112,13 +112,13 @@ body {
     color: #333;
 }
 
-/* Main Content */
+Main Content
 .main-content {
     width: 75%;
     padding: 1rem;
 }
 
-/* Banner Slider */
+Banner Slider
 .banner-slider {
     display: flex;
     overflow: hidden;
@@ -137,11 +137,19 @@ body {
     transition: 0.5s;
 }
 
-/* Footer */
+Footer
 .footer {
     text-align: center;
     padding: 1rem;
     background-color: #333;
     color: #fff;
     margin-top: 2rem;
+} */
+.icon-hover:hover {
+	border-color: #3b71ca !important;
+	background-color: white !important;
+}
+
+.icon-hover:hover i {
+	color: #3b71ca !important;
 }
