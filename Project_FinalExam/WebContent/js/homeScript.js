@@ -1,7 +1,7 @@
 /**
  * 
  */
-let currentBanner = 0;
+/*let currentBanner = 0;
 const banners = document.querySelectorAll(".banner");
 
 function showBanner(index) {
@@ -15,4 +15,6 @@ function nextBanner() {
     showBanner(currentBanner);
 }
 
-setInterval(nextBanner, 3000);
+setInterval(nextBanner, 3000);*/
+
+
